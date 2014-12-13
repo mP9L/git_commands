@@ -1,0 +1,56 @@
+################## Git Initialization ############
+#global config
+git config --global user.name "Your Name"
+git config --global user.email "email@example.com"
+
+#create git repository
+git init
+
+################## Basic Operation #################
+#add file
+git add git_command.txt
+
+#upload to repository
+git commit -m "wrote a git common command file"
+
+#get git status
+git status
+
+#diff file
+git diff [commitID]
+git diff HEAD -- git_command.txt #diff working directory and repository file
+
+#show commit history
+git log [--pretty=oneline]
+
+#reset to previous version
+git reset --hard HEAD^
+git reset --hard commitId
+
+#show command history
+git reflog
+
+#check out file, recover from repository to working directory
+git checkout -- git_command.txt
+
+#unstage file, from stage to working directory
+git reset HEAD git_command.txt
+
+#delete file
+git rm
+
+#################Remote Operation#######################
+#remote add
+git remote add origin git@server-name:path/repo-name.git
+
+#upload repository to remote server
+git push [-u] origin master #first time, add -u option
+
+#download repository from remote server
+git clone
+
+
+
+
+
+
