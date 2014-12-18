@@ -1,4 +1,6 @@
-################## Git Initialization ############
+#################################################
+################## Git Initialization ###########
+#################################################
 #global config
 git config --global user.name "Your Name"
 git config --global user.email "email@example.com"
@@ -6,7 +8,9 @@ git config --global user.email "email@example.com"
 #create git repository
 git init
 
-################## Basic Operation #################
+#################################################
+################## Basic Operation ##############
+#################################################
 #add file
 git add git_command.txt
 
@@ -39,18 +43,99 @@ git reset HEAD git_command.txt
 #delete file
 git rm
 
-#################Remote Operation#######################
+#################################################
+################# Branch Management #############
+#################################################
+#create branch
+git branch dev
+
+#switched to branch "dev"
+git checkout dev
+
+#create and switch to "dev" branch
+git checkout -b dev
+
+#show current branch
+git branch
+
+#merge identified branch to current branch
+git merge dev
+
+#merge with no fast forward
+git merge dev --no-ff
+
+#delete branch
+git branch -d dev
+#delete unmerged branch
+git branch -D dev
+
+#resolve conflicts
+#edit conflict file and add,commit
+
+#show branch merge history
+git log --graph --pretty=oneline --abbrev-commit
+
+#save current working status
+git stash
+
+#copy stash file from somewhere
+git stash apply
+
+#delete stash file
+git stash drop
+
+#get and delete stash file
+git stash pop
+
+#################################################
+################# Remote Operation ##############
+#################################################
 #remote add
 git remote add origin git@server-name:path/repo-name.git
 
-#upload repository to remote server
+#upload repository/branch to remote server
 git push [-u] origin master #first time, add -u option
 
-#download repository from remote server
+#download repository from remote server, only master branch
 git clone
 
+#download other branch from remote server
+git checkout -b dev origin/dev
 
+#show remote information
+git remote
+git remote -v
 
+#resolve remote conflicts
+git branch --set-upstream dev origin/dev #tracking information
+git pull #pull remote branch and merge with local branch
+git push origin dev #push to remote server
+
+#################################################
+################# Tag Management ################
+#################################################
+#Create normal tag
+git checkout master #Switched to target branch 'master'
+git tag <tag_name> #create tag on later commitID
+
+#Create tag on corresponding commitID
+git log --pretty=oneline --abbrev-commit #show commit log
+git tag <tag_name> <commitID>
+
+#Detail tag method
+git tag -a <tag_name> -m "blablabla" <commitID>
+
+#Signed tag
+git tag -s <tag_name> -m "blablabla" <commitID> #signed version with PGP, must install gpg（GnuPG）
+
+#Show tag
+git show <tag_name>
+
+#Show all tag
+git tag
+
+#Delete tag
+git tag -d <tag_name>
 
 
 
