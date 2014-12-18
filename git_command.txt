@@ -100,6 +100,9 @@ git stash pop
 #################################################
 ################# Remote Operation ##############
 #################################################
+#ssh keygen
+ssh-keygen -t rsa -C "youremail@example.com"
+
 #Remote add
 git remote add origin git@server-name:path/repo-name.git
 
