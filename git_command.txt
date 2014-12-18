@@ -1,112 +1,122 @@
 #################################################
 ################## Git Initialization ###########
 #################################################
-#global config
+#Global config
 git config --global user.name "Your Name"
 git config --global user.email "email@example.com"
 
-#create git repository
+#Config alias
+git config --global alias.st status #use "st" instead of "status"
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+#Colorfull git
+git config --global color.ui true
+
+#Create git repository
 git init
+
+#Create .gitignore file, list untracked file in it. Manage this file in repository
+#Coinfig file is in .git/config
 
 #################################################
 ################## Basic Operation ##############
 #################################################
-#add file
+#Add file
 git add git_command.txt
 
-#upload to repository
+#Upload to repository
 git commit -m "wrote a git common command file"
 
-#get git status
+#Get git status
 git status
 
-#diff file
+#Diff file
 git diff [commitID]
 git diff HEAD -- git_command.txt #diff working directory and repository file
 
-#show commit history
+#Show commit history
 git log [--pretty=oneline]
 
-#reset to previous version
+#Reset to previous version
 git reset --hard HEAD^
 git reset --hard commitId
 
-#show command history
+#Show command history
 git reflog
 
-#check out file, recover from repository to working directory
+#Check out file, recover from repository to working directory
 git checkout -- git_command.txt
 
-#unstage file, from stage to working directory
+#Unstage file, from stage to working directory
 git reset HEAD git_command.txt
 
-#delete file
+#Delete file
 git rm
 
 #################################################
 ################# Branch Management #############
 #################################################
-#create branch
+#Create branch
 git branch dev
 
-#switched to branch "dev"
+#Switched to branch "dev"
 git checkout dev
 
-#create and switch to "dev" branch
+#Create and switch to "dev" branch
 git checkout -b dev
 
-#show current branch
+#Show current branch
 git branch
 
-#merge identified branch to current branch
+#Merge identified branch to current branch
 git merge dev
 
-#merge with no fast forward
+#Merge with no fast forward
 git merge dev --no-ff
 
-#delete branch
+#Delete branch
 git branch -d dev
-#delete unmerged branch
+#Delete unmerged branch
 git branch -D dev
 
-#resolve conflicts
+#Resolve conflicts
 #edit conflict file and add,commit
 
-#show branch merge history
+#Show branch merge history
 git log --graph --pretty=oneline --abbrev-commit
 
-#save current working status
+#Save current working status
 git stash
 
-#copy stash file from somewhere
+#Copy stash file from somewhere
 git stash apply
 
-#delete stash file
+#Delete stash file
 git stash drop
 
-#get and delete stash file
+#Get and delete stash file
 git stash pop
 
 #################################################
 ################# Remote Operation ##############
 #################################################
-#remote add
+#Remote add
 git remote add origin git@server-name:path/repo-name.git
 
-#upload repository/branch to remote server
+#Upload repository/branch to remote server
 git push [-u] origin master #first time, add -u option
 
-#download repository from remote server, only master branch
+#Download repository from remote server, only master branch
 git clone
 
-#download other branch from remote server
+#Download other branch from remote server
 git checkout -b dev origin/dev
 
-#show remote information
+#Show remote information
 git remote
 git remote -v
 
-#resolve remote conflicts
+#Resolve remote conflicts
 git branch --set-upstream dev origin/dev #tracking information
 git pull #pull remote branch and merge with local branch
 git push origin dev #push to remote server
@@ -137,5 +147,12 @@ git tag
 #Delete tag
 git tag -d <tag_name>
 
+#Push tag to remote server
+git push origin <tag_name>
 
+#Push all tags to remote server
+git push origin --tags
 
+#Delete remote tag
+git tag -d <tag_name> #delete local tag first
+git push origin :refs/tags/<tag_name> #push delete information to remote
