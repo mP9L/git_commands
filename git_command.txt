@@ -156,3 +156,23 @@ git push origin --tags
 #Delete remote tag
 git tag -d <tag_name> #delete local tag first
 git push origin :refs/tags/<tag_name> #push delete information to remote
+
+#################################################
+################# Remote Git Server #############
+#################################################
+#Install git
+sudo apt-get install git
+
+#Add git user
+sudo adduser git
+
+#Add author pub keys
+/home/git/.ssh/authorized_keys
+
+#Create repository
+sudo git init --bare sample.git
+
+#Change directory owner
+sudo chown -R git:git sample.git
+
+#Disable shell operation: edit file /etc/passwd git:x:1001:1001:,,,:/home/git:/bin/bash to git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell
